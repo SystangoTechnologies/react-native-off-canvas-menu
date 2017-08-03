@@ -7,7 +7,8 @@ import {
   Animated,
   TouchableWithoutFeedback,
   ScrollView,
-  BackAndroid
+  BackAndroid,
+  Platform
 } from 'react-native'
 
 class OffCanvas3D extends Component {
@@ -24,7 +25,8 @@ class OffCanvas3D extends Component {
       stagArr: [],
       animatedStagArr: [],
       menuItems: this.props.menuItems,
-      activeMenu: 0
+      activeMenu: 0,
+      bounceValue: new Animated.Value(0),
     }
   }
 
@@ -32,13 +34,17 @@ class OffCanvas3D extends Component {
   componentDidMount() {
     let stagArrNew = []
     for (let i = 0; i < this.state.menuItems.length; i++) stagArrNew.push(i)
-    this.setState({ stagArr: stagArrNew })
+    this.setState({ stagArr: stagArrNew})
 
     let animatedStagArrNew = []
     stagArrNew.forEach((value) => {
       animatedStagArrNew[value] = new Animated.Value(0)
     })
     this.setState({ animatedStagArr: animatedStagArrNew })
+
+    this.state.bounceValue.setValue(0);     // Start large
+
+
   }
 
   // any update to component will fire the animation
@@ -79,14 +85,20 @@ class OffCanvas3D extends Component {
     return (
       <View style={[styles.offCanvasContainer, {
         flex: 1,
-        backgroundColor: this.props.backgroundColor
+        backgroundColor: 'transparent'
       }]}>
-
+      <Animated.View style={{position:'absolute', left:40, top:15, alignItems:'center', justifyContent:'center',  transform: [                        // `transform` is an ordered array
+            {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
+          ]}} >
+        {this.props.profileImageBG}
+        <Text style={{marginTop:1, fontSize:13, color:'white', fontWeight:'bold', height:20}}>Name</Text>
+        <View style={{position:'absolute', left:20, top:9, flex:1}}>{this.props.profileImage}</View>
+      </Animated.View>
         <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
           position: 'absolute',
-          top: 0,
+          top: 132,
           left: 0,
           right: 0,
           bottom: 0
@@ -97,12 +109,9 @@ class OffCanvas3D extends Component {
         </ScrollView>
 
         <Animated.View
-        onStartShouldSetResponder={() => true}
-        onResponderTerminationRequest={() => true}
-        onResponderRelease={(evt) => this._gestureControl(evt)}
         style={[styles.activityContainer, {
           flex: 1,
-          backgroundColor: this.props.backgroundColor,
+          backgroundColor: 'transparent',
           transform: [
             { translateX: this.state.activityLeftPos },
             { scale: this.state.scaleSize },
@@ -119,8 +128,13 @@ class OffCanvas3D extends Component {
 
   // press on any menu item, render the respective scene
   _handlePress(index) {
-    this.setState({ activeMenu: index })
-    this.props.onMenuPress()
+
+    if (index == 2) {
+      this.props.parentObj.showLogoutAlert();
+    } else {
+      this.setState({ activeMenu: index })
+      this.props.onMenuPress()
+    }
   }
 
   _hardwareBackHandler() {
@@ -133,18 +147,30 @@ class OffCanvas3D extends Component {
     const {locationX, pageX} = evt.nativeEvent
 
     if (!this.props.active) {
-      if (locationX < 40 && pageX > 100) this.props.onMenuPress()
+    //  if (locationX < 40 && pageX > 100) this.props.onMenuPress()
     } else {
-      if (pageX) this.props.onMenuPress()
+      //if (pageX) this.props.onMenuPress()
     }
   }
 
   // animate stuffs with hard coded values for fine tuning
   _animateStuffs() {
-    const activityLeftPos = this.props.active ? 150 : 0
-    const scaleSize = this.props.active ? .8 : 1
+
+    if (!this.props.active) {
+      if (Platform.OS === "ios") {
+          this.state.bounceValue.setValue(0);
+      } else {
+        setTimeout (() => {
+          this.state.bounceValue.setValue(0);     // Start large
+        }, 500);
+      }
+
+    }
+
+    const activityLeftPos = this.props.active ? 180 : 0
+    const scaleSize = this.props.active ? .75 : 1
     const rotate = this.props.active ? 1 : 0
-    const menuTranslateX = this.props.active? 0 : -150
+    const menuTranslateX = this.props.active? 0 : -220
 
     Animated.parallel([
       Animated.timing(this.state.activityLeftPos, { toValue: activityLeftPos, duration: this.state.animationDuration }),
@@ -166,13 +192,30 @@ class OffCanvas3D extends Component {
             {
               toValue: menuTranslateX,
               duration: this.state.animationDuration,
-              delay: 400
+              delay: 50
             }
           )
         }
       }))
     ])
-    .start()
+    .start();
+
+    if (this.props.active) {
+
+      setTimeout (() => {
+
+        Animated.spring(                          // Base: spring, decay, timing
+          this.state.bounceValue,                 // Animate `bounceValue`
+          {
+            toValue: 1,                         // Animate to smaller size
+            friction: 3,                          // Bouncier spring
+          }
+        ).start();
+
+      }, 500);
+    }
+
+
   }
 }
 
@@ -198,10 +241,11 @@ export default OffCanvas3D
 // structure stylesheet
 const styles = StyleSheet.create({
   offCanvasContainer: {
-
+    flex:1,
+    flexDirection:'column'
   },
   menuItemsContainer: {
-    paddingTop: 30
+    paddingTop: 10
   },
   menuItemContainer: {
     paddingLeft: 20,

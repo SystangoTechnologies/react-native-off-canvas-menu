@@ -1,17 +1,90 @@
 {
-  "name": "react-native-off-canvas-menu",
-  "description": "beautifully crafted off canvas menu components for react native",
-  "author": "Provash Shoumma <provash.shoumma@gmail.com> (http://asprov.net)",
-  "version": "0.1.31",
-  "main": "index.js",
-  "keywords": ["react-native", "react", "off-canvas", "menu"],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/shoumma/react-native-off-canvas-menu"
+  "_args": [
+    [
+      {
+        "raw": "react-native-off-canvas-menu",
+        "scope": null,
+        "escapedName": "react-native-off-canvas-menu",
+        "name": "react-native-off-canvas-menu",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/stplmacmini6/Documents/Projects/BatterVsPitcher"
+    ]
+  ],
+  "_from": "react-native-off-canvas-menu@latest",
+  "_id": "react-native-off-canvas-menu@0.1.31",
+  "_inCache": true,
+  "_location": "/react-native-off-canvas-menu",
+  "_nodeVersion": "6.3.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/react-native-off-canvas-menu-0.1.31.tgz_1471492479603_0.24332486581988633"
   },
-  "license": "MIT",
+  "_npmUser": {
+    "name": "shoumma",
+    "email": "provash.shoumma@gmail.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-off-canvas-menu",
+    "scope": null,
+    "escapedName": "react-native-off-canvas-menu",
+    "name": "react-native-off-canvas-menu",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-off-canvas-menu/-/react-native-off-canvas-menu-0.1.31.tgz",
+  "_shasum": "c181092e385bcb2d5445fdf809202fc846f550b7",
+  "_shrinkwrap": null,
+  "_spec": "react-native-off-canvas-menu",
+  "_where": "/Users/stplmacmini6/Documents/Projects/BatterVsPitcher",
+  "author": {
+    "name": "Provash Shoumma",
+    "email": "provash.shoumma@gmail.com",
+    "url": "http://asprov.net"
+  },
   "bugs": {
     "url": "https://github.com/shoumma/react-native-off-canvas-menu/issues"
   },
-  "homepage": "https://github.com/shoumma/react-native-off-canvas-menu#readme"
+  "dependencies": {},
+  "description": "some beautifully crafted off canvas menu components for react native",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "c181092e385bcb2d5445fdf809202fc846f550b7",
+    "tarball": "https://registry.npmjs.org/react-native-off-canvas-menu/-/react-native-off-canvas-menu-0.1.31.tgz"
+  },
+  "gitHead": "99814f831df94f38954733438d4797d6a8203fe3",
+  "homepage": "https://github.com/shoumma/react-native-off-canvas-menu#readme",
+  "keywords": [
+    "react-native",
+    "react",
+    "off-canvas",
+    "menu"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "shoumma",
+      "email": "provash.shoumma@gmail.com"
+    }
+  ],
+  "name": "react-native-off-canvas-menu",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shoumma/react-native-off-canvas-menu.git"
+  },
+  "scripts": {},
+  "version": "0.1.31"
 }
