@@ -87,7 +87,7 @@ class OffCanvas3D extends Component {
         flex: 1,
         backgroundColor: 'transparent'
       }]}>
-      <Animated.View style={{position:'absolute', left:40, top:15, alignItems:'center', justifyContent:'center',  transform: [                        // `transform` is an ordered array
+      <Animated.View style={{position:'absolute', left:40, top:65, alignItems:'center', justifyContent:'center',  transform: [                        // `transform` is an ordered array
             {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
           ]}} >
         {this.props.profileImageBG}
@@ -98,7 +98,7 @@ class OffCanvas3D extends Component {
         showsVerticalScrollIndicator={false}
         style={{
           position: 'absolute',
-          top: 132,
+          top: 180,
           left: 0,
           right: 0,
           bottom: 0
@@ -118,17 +118,14 @@ class OffCanvas3D extends Component {
             { rotateY: rotateVal }
           ]
         }]}>
-
-          {this.state.menuItems[this.state.activeMenu].renderScene}
+          {this.state.menuItems[this.state.activeMenu].renderScene(this.state.activeMenu)}
         </Animated.View>
-
       </View>
     )
   }
 
   // press on any menu item, render the respective scene
   _handlePress(index) {
-
     if (index == 3) {
       this.props.parentObj.showLogoutAlert();
     } else {
