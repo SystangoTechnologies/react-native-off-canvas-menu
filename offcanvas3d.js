@@ -8,7 +8,8 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   BackAndroid,
-  Platform
+  Platform,
+  Image
 } from 'react-native'
 
 class OffCanvas3D extends Component {
@@ -61,6 +62,14 @@ class OffCanvas3D extends Component {
   }
 
   render() {
+    var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+    var imgURL ;
+    if (regex.test(this.props.profileImage)){
+      imgURL = this.props.profileImage;
+    }
+    else{
+      imgURL = this.props.profileImage;
+    }
     const rotateVal = this.state.rotate.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '-10deg']
@@ -91,8 +100,10 @@ class OffCanvas3D extends Component {
             {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
           ]}} >
         {this.props.profileImageBG}
-        <Text style={{marginTop:1, fontSize:13, color:'white', fontWeight:'bold', height:20}}>Name</Text>
-        <View style={{position:'absolute', left:20, top:9, flex:1}}>{this.props.profileImage}</View>
+        <Text style={{marginTop:1, fontSize:13, color:'white', fontWeight:'bold', height:20}}>{this.props.profileName}</Text>
+        <View style={{position:'absolute', left:26, top:14.5, flex:1}}>
+        <Image  style={{alignSelf:'center',width:this.props.width_profile,height:this.props.height_profile,borderRadius:this.props.radious_profile}} source={{uri:imgURL}} />
+        </View>
       </Animated.View>
         <ScrollView
         showsVerticalScrollIndicator={false}
