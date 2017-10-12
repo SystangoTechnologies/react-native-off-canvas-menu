@@ -11,7 +11,7 @@ Beautifully crafted off canvas menu components for react native applications.
 * Hardware back button handling for Android
 
 Created with [React Native Animated](https://facebook.github.io/react-native/docs/animated.html) library. The component is compatible with Android only. There is an example app with this repository in the `example` folder.
-
+ 
 
 ### OffCanvas3D
 ![Preview](./visuals/OffCanvas3D.gif)
