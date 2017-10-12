@@ -62,14 +62,7 @@ class OffCanvas3D extends Component {
   }
 
   render() {
-    var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
-    var imgURL ;
-    if (regex.test(this.props.profileImage)){
-      imgURL = this.props.profileImage;
-    }
-    else{
-      imgURL = this.props.profileImage;
-    }
+
     const rotateVal = this.state.rotate.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '-10deg']
@@ -102,7 +95,9 @@ class OffCanvas3D extends Component {
         {this.props.profileImageBG}
         <Text style={{marginTop:1, fontSize:13, color:'white', fontWeight:'bold', height:20}}>{this.props.profileName}</Text>
         <View style={{position:'absolute', left:26, top:14.5, flex:1}}>
-        <Image  style={{alignSelf:'center',width:this.props.width_profile,height:this.props.height_profile,borderRadius:this.props.radious_profile}} source={{uri:imgURL}} />
+        <View  style={{alignSelf:'center',width:this.props.width_profile,height:this.props.height_profile,borderRadius:this.props.radious_profile}}>
+        {this.props.profileImage}
+        </View>
         </View>
       </Animated.View>
         <ScrollView
@@ -137,7 +132,7 @@ class OffCanvas3D extends Component {
 
   // press on any menu item, render the respective scene
   _handlePress(index) {
-    if (index == 5) {
+    if (index == 8) {
       this.props.parentObj.showLogoutAlert();
     } else {
       this.setState({ activeMenu: index })
