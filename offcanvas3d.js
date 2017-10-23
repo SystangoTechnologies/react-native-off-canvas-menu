@@ -62,7 +62,6 @@ class OffCanvas3D extends Component {
   }
 
   render() {
-
     const rotateVal = this.state.rotate.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '-10deg']
@@ -89,16 +88,16 @@ class OffCanvas3D extends Component {
         flex: 1,
         backgroundColor: 'transparent'
       }]}>
-      <Animated.View style={{position:'absolute', left:40, top:65, alignItems:'center', justifyContent:'center',  transform: [                        // `transform` is an ordered array
+      <Animated.View style={{position:'absolute', left:20, top:65, alignItems:'center', justifyContent:'center',  transform: [                        // `transform` is an ordered array
             {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
           ]}} >
           <View>
           {this.props.profileImageBG}
-          <View  style={{position:'absolute', left:26, top:14.5, flex:1,alignSelf:'center',width:this.props.width_profile,height:this.props.height_profile,borderRadius:this.props.radious_profile}}>
+          <View  style={{position:'absolute', left:25, top:13.7, flex:1,alignSelf:'center',width:this.props.width_profile,height:this.props.height_profile,borderRadius:this.props.radious_profile}}>
           {this.props.profileImage}
           </View>
         </View>
-        <Text style={{marginTop:1, fontSize:15, color:'white', fontWeight:'bold', height:20}}>{this.props.profileName}</Text>
+        <Text style={{marginTop:1, fontSize:15, color:'#F57B20', fontWeight:'bold', height:20}}>{this.props.profileName}</Text>
 
       </Animated.View>
         <ScrollView
@@ -110,7 +109,7 @@ class OffCanvas3D extends Component {
           right: 0,
           bottom: 0
         }}>
-          <Animated.View style={styles.menuItemsContainer}>
+          <Animated.View style={{paddingTop: this.props.topHeight}}>
               {staggeredAnimatedMenus}
           </Animated.View>
         </ScrollView>
