@@ -97,7 +97,7 @@ class OffCanvas3D extends Component {
           {this.props.profileImage}
           </View>
         </View>
-        <Text style={{marginTop:1, fontSize:15, color:'#F57B20', fontWeight:'bold', height:20}}>{this.props.profileName}</Text>
+        <Text style={{marginTop:1, fontSize:15, color:'#FFFFFF', fontWeight:'bold', height:20}}>{this.props.profileName}</Text>
 
       </Animated.View>
         <ScrollView
